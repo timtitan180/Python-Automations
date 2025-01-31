@@ -1,1 +1,24 @@
+import os
+import shutil
+
+def delete_files_and_folders(start_dir):
+    for root, dirs, files in os.walk(start_dir, topdown=False):
+        # Delete files that start with 'X'
+        for file_name in files:
+            if file_name.startswith('X'):
+                file_path = os.path.join(root, file_name)
+                print(f"Deleting file: {file_path}")
+                os.remove(file_path)
+
+        # Delete directories that start with 'X'
+        for dir_name in dirs:
+            if dir_name.startswith('X'):
+                dir_path = os.path.join(root, dir_name)
+                print(f"Deleting folder: {dir_path}")
+                shutil.rmtree(dir_path)
+
+if __name__ == "__main__":
+    # Specify the directory to start from
+    start_directory = input("Enter the directory path to scan and delete files/folders starting with 'X': ")
+    delete_files_and_folders(start_directory)
 
